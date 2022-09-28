@@ -8,14 +8,11 @@ import React, {
 import { ThemeProvider } from "@mui/material";
 import { Box } from "@mui/system";
 import { DarkTheme, LightTheme } from "../themes";
+import { Children } from "../Interfaces";
 
 interface ThemeContextData {
   themeName: "light" | "dark";
   toggleTheme: () => void;
-}
-
-interface Children {
-  children?: React.ReactNode;
 }
 
 const ThemeContext = createContext({} as ThemeContextData);
@@ -34,8 +31,9 @@ export const AppThemeProvider: React.FC<Children> = ({ children }) => {
   }, []);
 
   const theme = useMemo(() => {
-    if (themeName === "light") return LightTheme;
-
+    if (themeName === "light") {
+      return LightTheme;
+    }
     return DarkTheme;
   }, [themeName]);
 
