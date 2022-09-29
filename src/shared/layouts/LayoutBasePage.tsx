@@ -26,13 +26,7 @@ export const LayoutBasePage: React.FC<LayoutBasePageProps> = ({
   const { toggleDrawerOpen } = useDrawerContext();
 
   return (
-    <Box
-      height="100%"
-      sx={{ color: theme.palette.primary.contrastText }}
-      display="flex"
-      flexDirection="column"
-      gap={1}
-    >
+    <Box height="100%" display="flex" flexDirection="column" gap={1}>
       <Box
         padding={1}
         gap={1}

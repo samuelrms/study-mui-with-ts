@@ -26,8 +26,6 @@ export const ListItemLink: React.FC<ListItemLinkProps> = ({
 
   const match = useMatch({ path: resolvedPath.pathname, end: false });
 
-  const theme = useTheme();
-
   const handleClick = () => {
     navigate(to);
     onClick?.();
@@ -38,10 +36,7 @@ export const ListItemLink: React.FC<ListItemLinkProps> = ({
       <ListItemIcon>
         <Icon color="primary">{icon}</Icon>
       </ListItemIcon>
-      <ListItemText
-        sx={{ color: theme.palette.primary.contrastText }}
-        primary={label}
-      />
+      <ListItemText primary={label} />
     </ListItemButton>
   );
 };

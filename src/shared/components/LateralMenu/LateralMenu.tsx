@@ -24,13 +24,6 @@ export const LateralMenu: React.FC<Children> = ({ children }) => {
   const { isDrawerOpen, toggleDrawerOpen, drawerOptions } = useDrawerContext();
   const { toggleTheme, themeName } = useAppThemeContext();
 
-  const closeAndToggleTheme = () => {
-    if (smDown) {
-      toggleDrawerOpen();
-    }
-    toggleTheme();
-  };
-
   return (
     <>
       <Drawer
@@ -60,15 +53,6 @@ export const LateralMenu: React.FC<Children> = ({ children }) => {
           <Divider />
           <Box flex={1}>
             <List component="nav">
-              <ListItemButton onClick={closeAndToggleTheme}>
-                <ListItemIcon>
-                  <Icon color="primary">light</Icon>
-                </ListItemIcon>
-                <ListItemText
-                  sx={{ color: theme.palette.primary.contrastText }}
-                  primary={themeName === "light" ? "Tema escuro" : "Tema claro"}
-                />
-              </ListItemButton>
               {drawerOptions.map((drawerOption) => (
                 <ListItemLink
                   key={drawerOption.path}
@@ -78,6 +62,18 @@ export const LateralMenu: React.FC<Children> = ({ children }) => {
                   onClick={smDown ? toggleDrawerOpen : undefined}
                 />
               ))}
+            </List>
+          </Box>
+          <Box>
+            <List component="nav">
+              <ListItemButton onClick={toggleTheme}>
+                <ListItemIcon>
+                  <Icon color="primary">light</Icon>
+                </ListItemIcon>
+                <ListItemText
+                  primary={themeName === "light" ? "Tema escuro" : "Tema claro"}
+                />
+              </ListItemButton>
             </List>
           </Box>
         </Box>
