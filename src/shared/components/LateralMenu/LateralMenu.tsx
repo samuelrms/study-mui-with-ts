@@ -3,19 +3,14 @@ import {
   Divider,
   Drawer,
   List,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
-  Icon,
   useTheme,
   useMediaQuery,
 } from "@mui/material";
 import { Box } from "@mui/system";
-import { DarkMode } from "@mui/icons-material";
 
 import { Children } from "../../Interfaces";
 import avatar from "../../assets/avatar.jpeg";
-import { useAppThemeContext, useDrawerContext } from "../../contexts";
+import { useDrawerContext } from "../../contexts";
 import { ListItemLink } from "./ListItemLink";
 
 export const LateralMenu: React.FC<Children> = ({ children }) => {
