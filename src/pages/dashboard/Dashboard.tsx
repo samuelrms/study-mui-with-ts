@@ -1,9 +1,9 @@
-import React from "react";
+import { Toolbar } from "../../shared/components";
 import { LayoutBasePage } from "../../shared/layouts";
 
 export const Dashboard = () => {
   return (
-    <LayoutBasePage title="Página inicial" toolbar={<>Barra de ferramentas</>}>
+    <LayoutBasePage title="Página inicial" toolbar={<Toolbar />}>
       Dashboard
     </LayoutBasePage>
   );

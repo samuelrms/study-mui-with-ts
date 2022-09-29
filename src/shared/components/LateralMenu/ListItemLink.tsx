@@ -3,7 +3,6 @@ import {
   ListItemIcon,
   ListItemText,
   Icon,
-  useTheme,
 } from "@mui/material";
 import { useMatch, useNavigate, useResolvedPath } from "react-router-dom";
 

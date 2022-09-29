@@ -9,8 +9,8 @@ import {
   ListItemIcon,
   Icon,
   ListItemText,
+  Box,
 } from "@mui/material";
-import { Box } from "@mui/system";
 
 import { Children } from "../../Interfaces";
 import avatar from "../../assets/avatar.jpeg";
