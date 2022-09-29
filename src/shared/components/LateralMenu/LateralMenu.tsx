@@ -5,12 +5,16 @@ import {
   List,
   useTheme,
   useMediaQuery,
+  ListItemButton,
+  ListItemIcon,
+  Icon,
+  ListItemText,
 } from "@mui/material";
 import { Box } from "@mui/system";
 
 import { Children } from "../../Interfaces";
 import avatar from "../../assets/avatar.jpeg";
-import { useDrawerContext } from "../../contexts";
+import { useAppThemeContext, useDrawerContext } from "../../contexts";
 import { ListItemLink } from "./ListItemLink";
 
 export const LateralMenu: React.FC<Children> = ({ children }) => {
@@ -18,6 +22,14 @@ export const LateralMenu: React.FC<Children> = ({ children }) => {
   const smDown = useMediaQuery(theme.breakpoints.down("sm"));
 
   const { isDrawerOpen, toggleDrawerOpen, drawerOptions } = useDrawerContext();
+  const { toggleTheme, themeName } = useAppThemeContext();
+
+  const closeAndToggleTheme = () => {
+    if (smDown) {
+      toggleDrawerOpen();
+    }
+    toggleTheme();
+  };
 
   return (
     <>
@@ -48,6 +60,15 @@ export const LateralMenu: React.FC<Children> = ({ children }) => {
           <Divider />
           <Box flex={1}>
             <List component="nav">
+              <ListItemButton onClick={closeAndToggleTheme}>
+                <ListItemIcon>
+                  <Icon color="primary">light</Icon>
+                </ListItemIcon>
+                <ListItemText
+                  sx={{ color: theme.palette.primary.contrastText }}
+                  primary={themeName === "light" ? "Tema escuro" : "Tema claro"}
+                />
+              </ListItemButton>
               {drawerOptions.map((drawerOption) => (
                 <ListItemLink
                   key={drawerOption.path}

@@ -3,6 +3,7 @@ import {
   ListItemIcon,
   ListItemText,
   Icon,
+  useTheme,
 } from "@mui/material";
 import { useMatch, useNavigate, useResolvedPath } from "react-router-dom";
 
@@ -25,6 +26,8 @@ export const ListItemLink: React.FC<ListItemLinkProps> = ({
 
   const match = useMatch({ path: resolvedPath.pathname, end: false });
 
+  const theme = useTheme();
+
   const handleClick = () => {
     navigate(to);
     onClick?.();
@@ -35,7 +38,10 @@ export const ListItemLink: React.FC<ListItemLinkProps> = ({
       <ListItemIcon>
         <Icon color="primary">{icon}</Icon>
       </ListItemIcon>
-      <ListItemText primary={label} />
+      <ListItemText
+        sx={{ color: theme.palette.primary.contrastText }}
+        primary={label}
+      />
     </ListItemButton>
   );
 };

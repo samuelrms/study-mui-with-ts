@@ -1,4 +1,3 @@
-import React from "react";
 import {
   IconButton,
   Typography,
@@ -12,35 +11,53 @@ import { useDrawerContext } from "../contexts";
 interface LayoutBasePageProps {
   children: React.ReactNode;
   title: string;
+  toolbar?: React.ReactNode;
 }
 
 export const LayoutBasePage: React.FC<LayoutBasePageProps> = ({
   children,
   title,
+  toolbar,
 }) => {
   const theme = useTheme();
   const smDown = useMediaQuery(theme.breakpoints.down("sm"));
+  const mdDown = useMediaQuery(theme.breakpoints.down("md"));
 
   const { toggleDrawerOpen } = useDrawerContext();
 
   return (
-    <Box height="100%" display="flex" flexDirection="column" gap={1}>
+    <Box
+      height="100%"
+      sx={{ color: theme.palette.primary.contrastText }}
+      display="flex"
+      flexDirection="column"
+      gap={1}
+    >
       <Box
         padding={1}
         gap={1}
         display="flex"
         alignItems="center"
-        height={theme.spacing(12)}
+        height={theme.spacing(smDown ? 6 : mdDown ? 8 : 12)}
       >
         {smDown && (
           <IconButton onClick={toggleDrawerOpen}>
-            <Icon>menu</Icon>
+            <Icon color="primary">menu</Icon>
           </IconButton>
         )}
-        <Typography variant="h5">{title}</Typography>
+        <Typography
+          whiteSpace="nowrap"
+          overflow="hidden"
+          textOverflow="ellipsis"
+          variant={smDown ? "h5" : mdDown ? "h4" : "h3"}
+        >
+          {title}
+        </Typography>
       </Box>
-      <Box>Ferramentas</Box>
-      <Box>{children}</Box>
+      {toolbar && <Box>{toolbar}</Box>}
+      <Box flex={1} overflow="auto">
+        {children}
+      </Box>
     </Box>
   );
 };
