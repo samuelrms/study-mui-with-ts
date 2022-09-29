@@ -11,15 +11,18 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import { Box } from "@mui/system";
+import { DarkMode } from "@mui/icons-material";
+
 import { Children } from "../../Interfaces";
 import avatar from "../../assets/avatar.jpeg";
-import { useDrawerContext } from "../../contexts";
+import { useAppThemeContext, useDrawerContext } from "../../contexts";
+import { ListItemLink } from "./ListItemLink";
 
 export const LateralMenu: React.FC<Children> = ({ children }) => {
   const theme = useTheme();
   const smDown = useMediaQuery(theme.breakpoints.down("sm"));
 
-  const { isDrawerOpen, toggleDrawerOpen } = useDrawerContext();
+  const { isDrawerOpen, toggleDrawerOpen, drawerOptions } = useDrawerContext();
 
   return (
     <>
@@ -50,12 +53,15 @@ export const LateralMenu: React.FC<Children> = ({ children }) => {
           <Divider />
           <Box flex={1}>
             <List component="nav">
-              <ListItemButton>
-                <ListItemIcon>
-                  <Icon>home</Icon>
-                </ListItemIcon>
-                <ListItemText primary="Página inicial" />
-              </ListItemButton>
+              {drawerOptions.map((drawerOption) => (
+                <ListItemLink
+                  key={drawerOption.path}
+                  icon={drawerOption.icon}
+                  label={drawerOption.label}
+                  to={drawerOption.path}
+                  onClick={smDown ? toggleDrawerOpen : undefined}
+                />
+              ))}
             </List>
           </Box>
         </Box>

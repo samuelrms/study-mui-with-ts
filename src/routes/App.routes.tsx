@@ -1,26 +1,28 @@
+import { useEffect } from "react";
 import { Button } from "@mui/material";
-import { Box } from "@mui/system";
 import { Routes, Route, Navigate } from "react-router-dom";
-import { useAppThemeContext, useDrawerContext } from "./../shared/contexts";
+import { useDrawerContext } from "./../shared/contexts";
+import { routes } from "./routes";
 
 export const AppRoutes = () => {
-  const { toggleTheme } = useAppThemeContext();
-  const { toggleDrawerOpen } = useDrawerContext();
+  const { toggleDrawerOpen, setDrawerOptions } = useDrawerContext();
 
+  useEffect(() => {
+    setDrawerOptions(routes);
+  }, []);
 
   return (
     <Routes>
       <Route
         path="/home"
         element={
-          <Box>
-            <Button variant="contained" color="primary" onClick={toggleTheme}>
-              Toggle theme
-            </Button>
-            <Button variant="contained" color="primary" onClick={toggleDrawerOpen}>
-              Open Drawer
-            </Button>
-          </Box>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={toggleDrawerOpen}
+          >
+            Open Drawer
+          </Button>
         }
       />
       <Route path="*" element={<Navigate to="/home" />} />
