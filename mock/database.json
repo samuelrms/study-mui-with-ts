@@ -2,9 +2,9 @@
   "people": [
     {
       "id": 1,
-      "nome": "Samuel",
-      "sobrenome": "Ramos",
-      "idade": 22
+      "name": "Samuel",
+      "fullName": "Ramos",
+      "age": 22
     }
   ]
 }
