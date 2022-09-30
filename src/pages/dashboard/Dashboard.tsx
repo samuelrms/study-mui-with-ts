@@ -7,7 +7,7 @@ export const Dashboard = () => {
       title="Página inicial"
       toolbar={
         <ToolbarDetails
-          showButton={{ saveAndBack: false }}
+          showButton={{ saveAndBack: true }}
           load={{ saveAndBack: false }}
         />
       }

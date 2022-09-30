@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 import React from "react";
 import {
   Box,
@@ -7,6 +8,8 @@ import {
   Icon,
   Divider,
   Skeleton,
+  Typography,
+  useMediaQuery,
 } from "@mui/material";
 
 interface ToolbarDetailsProps {
@@ -41,6 +44,9 @@ export const ToolbarDetails: React.FC<ToolbarDetailsProps> = ({
   handleClick,
 }) => {
   const theme = useTheme();
+  const smDown = useMediaQuery(theme.breakpoints.down("sm"));
+  const mdDown = useMediaQuery(theme.breakpoints.down("md"));
+
   return (
     <Box
       height={theme.spacing(5)}
@@ -60,12 +66,19 @@ export const ToolbarDetails: React.FC<ToolbarDetailsProps> = ({
           disableElevation
           onClick={handleClick?.save}
         >
-          Salvar
+          <Typography
+            variant="button"
+            whiteSpace="nowrap"
+            textOverflow="ellipsis"
+            overflow="hidden"
+          >
+            Salvar
+          </Typography>
         </Button>
       )}
       {load?.save && <Skeleton width={110} height={60} />}
 
-      {showButton?.saveAndBack && !load?.saveAndBack && (
+      {!mdDown && !smDown && showButton?.saveAndBack && !load?.saveAndBack && (
         <Button
           variant="outlined"
           color="primary"
@@ -73,10 +86,19 @@ export const ToolbarDetails: React.FC<ToolbarDetailsProps> = ({
           disableElevation
           onClick={handleClick?.saveAndBack}
         >
-          Salvar e voltar
+          <Typography
+            variant="button"
+            whiteSpace="nowrap"
+            textOverflow="ellipsis"
+            overflow="hidden"
+          >
+            Salvar e voltar
+          </Typography>
         </Button>
       )}
-      {load?.saveAndBack && <Skeleton width={180} height={60} />}
+      {!mdDown && !smDown && load?.saveAndBack && (
+        <Skeleton width={180} height={60} />
+      )}
 
       {!showButton?.delete && !load?.delete && (
         <Button
@@ -86,12 +108,19 @@ export const ToolbarDetails: React.FC<ToolbarDetailsProps> = ({
           disableElevation
           onClick={handleClick?.delete}
         >
-          Apagar
+          <Typography
+            variant="button"
+            whiteSpace="nowrap"
+            textOverflow="ellipsis"
+            overflow="hidden"
+          >
+            Apagar
+          </Typography>
         </Button>
       )}
       {load?.delete && <Skeleton width={110} height={60} />}
 
-      {!showButton?.new && !load?.new && (
+      {!showButton?.new && !load?.new && !smDown && (
         <Button
           variant="outlined"
           color="primary"
@@ -99,12 +128,26 @@ export const ToolbarDetails: React.FC<ToolbarDetailsProps> = ({
           disableElevation
           onClick={handleClick?.new}
         >
-          {textButtonNew}
+          <Typography
+            variant="button"
+            whiteSpace="nowrap"
+            textOverflow="ellipsis"
+            overflow="hidden"
+          >
+            {textButtonNew}
+          </Typography>
         </Button>
       )}
-      {load?.new && <Skeleton width={110} height={60} />}
+      {load?.new && !smDown && <Skeleton width={110} height={60} />}
 
-      <Divider variant="middle" orientation="vertical" />
+      {!showButton?.back &&
+        (!showButton?.new ||
+          !showButton?.delete ||
+          !showButton?.save ||
+          showButton?.saveAndBack) && (
+          <Divider variant="middle" orientation="vertical" />
+        )}
+
       {!showButton?.back && !load?.back && (
         <Button
           variant="outlined"
@@ -113,7 +156,14 @@ export const ToolbarDetails: React.FC<ToolbarDetailsProps> = ({
           disableElevation
           onClick={handleClick?.back}
         >
-          Voltar
+          <Typography
+            variant="button"
+            whiteSpace="nowrap"
+            textOverflow="ellipsis"
+            overflow="hidden"
+          >
+            Voltar
+          </Typography>
         </Button>
       )}
       {load?.back && <Skeleton width={110} height={60} />}
