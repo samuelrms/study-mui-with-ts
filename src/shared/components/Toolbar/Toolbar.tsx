@@ -4,7 +4,7 @@ import { Environment } from "../../environment";
 
 interface ToolbarProps {
   searchText?: string;
-  openSearchInput?: boolean;
+  showSearchInput?: boolean;
   toggleTextSearch?: (newText: string) => void;
   textButtonNew?: string;
   openButtonNew?: boolean;
@@ -13,7 +13,7 @@ interface ToolbarProps {
 
 export const Toolbar: React.FC<ToolbarProps> = ({
   searchText = "",
-  openSearchInput = false,
+  showSearchInput: openSearchInput = false,
   openButtonNew = true,
   textButtonNew = "Novo",
   toggleTextSearch,

@@ -1,4 +1,4 @@
-import { Dashboard } from "../pages";
+import { CityList, Dashboard } from "../pages";
 
 export const routes = [
   {
@@ -8,4 +8,18 @@ export const routes = [
     subPath: [],
     element: <Dashboard />,
   },
+  {
+    label: "Cidades",
+    icon: "apartment",
+    path: "/cidades",
+    subPath: [],
+    element: <CityList />,
+  },
+  // {
+  //   label: "Detalhes",
+  //   icon: "description",
+  //   path: "/cidades/detalhes/:id",
+  //   subPath: [],
+  //   element: <CityList />,
+  // },
 ];

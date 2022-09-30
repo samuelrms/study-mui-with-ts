@@ -23,7 +23,10 @@ export const ListItemLink: React.FC<ListItemLinkProps> = ({
 
   const resolvedPath = useResolvedPath(to);
 
-  const match = useMatch({ path: resolvedPath.pathname, end: false });
+  /**
+   * utilizado para comparar as rotas, para utilizar subRotas passar o end como false
+   */
+  const match = useMatch({ path: resolvedPath.pathname, end: true });
 
   const handleClick = () => {
     navigate(to);
