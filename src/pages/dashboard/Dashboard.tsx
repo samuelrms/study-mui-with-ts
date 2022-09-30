@@ -5,7 +5,12 @@ export const Dashboard = () => {
   return (
     <LayoutBasePage
       title="Página inicial"
-      toolbar={<ToolbarDetails showButton={{ saveAndBack: true }} />}
+      toolbar={
+        <ToolbarDetails
+          showButton={{ saveAndBack: false }}
+          load={{ saveAndBack: false }}
+        />
+      }
     >
       Dashboard
     </LayoutBasePage>

@@ -1,17 +1,24 @@
 import React from "react";
 import {
   Box,
-  TextField,
   Button,
   Paper,
   useTheme,
   Icon,
   Divider,
+  Skeleton,
 } from "@mui/material";
 
 interface ToolbarDetailsProps {
   textButtonNew?: string;
   showButton?: {
+    new?: boolean;
+    back?: boolean;
+    delete?: boolean;
+    save?: boolean;
+    saveAndBack?: boolean;
+  };
+  load?: {
     new?: boolean;
     back?: boolean;
     delete?: boolean;
@@ -30,6 +37,7 @@ interface ToolbarDetailsProps {
 export const ToolbarDetails: React.FC<ToolbarDetailsProps> = ({
   textButtonNew = "Novo",
   showButton,
+  load,
   handleClick,
 }) => {
   const theme = useTheme();
@@ -44,7 +52,7 @@ export const ToolbarDetails: React.FC<ToolbarDetailsProps> = ({
       alignItems="center"
       component={Paper}
     >
-      {!showButton?.save && (
+      {!showButton?.save && !load?.save && (
         <Button
           variant="contained"
           color="primary"
@@ -55,7 +63,9 @@ export const ToolbarDetails: React.FC<ToolbarDetailsProps> = ({
           Salvar
         </Button>
       )}
-      {showButton?.saveAndBack && (
+      {load?.save && <Skeleton width={110} height={60} />}
+
+      {showButton?.saveAndBack && !load?.saveAndBack && (
         <Button
           variant="outlined"
           color="primary"
@@ -66,7 +76,9 @@ export const ToolbarDetails: React.FC<ToolbarDetailsProps> = ({
           Salvar e voltar
         </Button>
       )}
-      {!showButton?.delete && (
+      {load?.saveAndBack && <Skeleton width={180} height={60} />}
+
+      {!showButton?.delete && !load?.delete && (
         <Button
           variant="outlined"
           color="primary"
@@ -77,7 +89,9 @@ export const ToolbarDetails: React.FC<ToolbarDetailsProps> = ({
           Apagar
         </Button>
       )}
-      {!showButton?.new && (
+      {load?.delete && <Skeleton width={110} height={60} />}
+
+      {!showButton?.new && !load?.new && (
         <Button
           variant="outlined"
           color="primary"
@@ -88,9 +102,10 @@ export const ToolbarDetails: React.FC<ToolbarDetailsProps> = ({
           {textButtonNew}
         </Button>
       )}
+      {load?.new && <Skeleton width={110} height={60} />}
 
       <Divider variant="middle" orientation="vertical" />
-      {!showButton?.back && (
+      {!showButton?.back && !load?.back && (
         <Button
           variant="outlined"
           color="primary"
@@ -101,6 +116,7 @@ export const ToolbarDetails: React.FC<ToolbarDetailsProps> = ({
           Voltar
         </Button>
       )}
+      {load?.back && <Skeleton width={110} height={60} />}
     </Box>
   );
 };
