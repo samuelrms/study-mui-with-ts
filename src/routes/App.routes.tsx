@@ -9,7 +9,6 @@ export const AppRoutes = () => {
 
   useEffect(() => {
     setDrawerOptions(routes);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

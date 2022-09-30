@@ -3,6 +3,7 @@ import { grey, yellow } from "@mui/material/colors";
 
 export const LightTheme = createTheme({
   palette: {
+    mode: "light",
     primary: {
       main: grey[700],
       dark: grey[800],
@@ -18,6 +19,11 @@ export const LightTheme = createTheme({
     background: {
       paper: "#fff",
       default: "#f7f6f3",
+    },
+  },
+  typography: {
+    allVariants: {
+      color: "#000",
     },
   },
 });

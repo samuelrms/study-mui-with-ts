@@ -1,7 +1,23 @@
 import React from "react";
-import { Box, TextField, Button, Paper, useTheme } from "@mui/material";
+import { Box, TextField, Button, Paper, useTheme, Icon } from "@mui/material";
 
-export const Toolbar: React.FC = () => {
+interface ToolbarProps {
+  searchText?: string;
+  openSearchInput?: boolean;
+  toggleTextSearch?: (newText: string) => void;
+  textButtonNew?: string;
+  openButtonNew?: boolean;
+  onClick?: () => void;
+}
+
+export const Toolbar: React.FC<ToolbarProps> = ({
+  searchText = "",
+  openSearchInput = false,
+  openButtonNew = true,
+  textButtonNew = "Novo",
+  toggleTextSearch,
+  onClick,
+}) => {
   const theme = useTheme();
   return (
     <Box
@@ -14,8 +30,27 @@ export const Toolbar: React.FC = () => {
       alignItems="center"
       component={Paper}
     >
-      <TextField />
-      <Button>Novo</Button>
+      {openSearchInput && (
+        <TextField
+          value={searchText}
+          onChange={(e) => toggleTextSearch?.(e.target.value)}
+          size="small"
+          placeholder="Pesquisar..."
+        />
+      )}
+      <Box flex={1} display="flex" justifyContent="end">
+        {openButtonNew && (
+          <Button
+            variant="contained"
+            color="primary"
+            endIcon={<Icon>add</Icon>}
+            disableElevation
+            onClick={onClick}
+          >
+            {textButtonNew}
+          </Button>
+        )}
+      </Box>
     </Box>
   );
 };
