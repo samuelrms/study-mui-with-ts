@@ -1,6 +1,8 @@
 import axios from "axios";
-import { URL_BASE } from "../../../constants";
 import { errorInterceptor, responseInterceptor } from "./interceptors";
+import { Environment } from "../../../environment";
+
+const { URL_BASE } = Environment;
 
 const API = axios.create({
   baseURL: URL_BASE,

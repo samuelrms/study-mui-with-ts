@@ -1,5 +1,6 @@
-import React from "react";
 import { Box, TextField, Button, Paper, useTheme, Icon } from "@mui/material";
+
+import { Environment } from "../../environment";
 
 interface ToolbarProps {
   searchText?: string;
@@ -35,7 +36,7 @@ export const Toolbar: React.FC<ToolbarProps> = ({
           value={searchText}
           onChange={(e) => toggleTextSearch?.(e.target.value)}
           size="small"
-          placeholder="Pesquisar..."
+          placeholder={Environment.INPUT_SEARCH}
         />
       )}
       <Box flex={1} display="flex" justifyContent="end">
