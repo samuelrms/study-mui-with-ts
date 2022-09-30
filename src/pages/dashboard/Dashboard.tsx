@@ -3,7 +3,10 @@ import { LayoutBasePage } from "../../shared/layouts";
 
 export const Dashboard = () => {
   return (
-    <LayoutBasePage title="Página inicial" toolbar={<ToolbarDetails />}>
+    <LayoutBasePage
+      title="Página inicial"
+      toolbar={<ToolbarDetails showButton={{ saveAndBack: true }} />}
+    >
       Dashboard
     </LayoutBasePage>
   );
