@@ -1,22 +1,25 @@
 import { Environment } from "../../../environment";
 import { API } from "../axiosConfig";
 
-interface DetailPeople {
+export interface DetailPeople {
   id: number;
   cityID: number;
   fullName: string;
   email: string;
 }
 
-interface PeopleList {
+export interface ListPeople {
   id: number;
-  cityID: number;
+  peopleID: number;
   fullName: string;
   email: string;
+  name: string;
+  action: string;
+  age: number;
 }
 
 type PeopleCount = {
-  data: PeopleList[];
+  data: ListPeople[];
   totalCount: number;
 };
 
