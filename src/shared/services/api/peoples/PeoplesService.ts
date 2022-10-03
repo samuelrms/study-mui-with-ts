@@ -110,7 +110,7 @@ const deleteByID = async (id: number): Promise<void | Error> => {
   }
 };
 
-export const PessoasService = {
+export const PeopleService = {
   create,
   getAll,
   getByID,

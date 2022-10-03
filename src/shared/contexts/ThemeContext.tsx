@@ -1,13 +1,8 @@
-import React, {
-  createContext,
-  useState,
-  useCallback,
-  useMemo,
-  useContext,
-} from "react";
+import React, { createContext, useCallback, useMemo, useContext } from "react";
 import { ThemeProvider, Box } from "@mui/material";
 import { DarkTheme, LightTheme } from "../themes";
 import { Children } from "../Interfaces";
+import { usePersistedState } from "../hooks";
 
 interface ThemeContextData {
   themeName: "light" | "dark";
@@ -21,7 +16,10 @@ export const useAppThemeContext = () => {
 };
 
 export const AppThemeProvider: React.FC<Children> = ({ children }) => {
-  const [themeName, setThemeName] = useState<"light" | "dark">("light");
+  const [themeName, setThemeName] = usePersistedState<"light" | "dark">(
+    "@theme_local",
+    LightTheme,
+  );
 
   const toggleTheme = useCallback(() => {
     setThemeName((oldThemeName) =>
