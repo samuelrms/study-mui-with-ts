@@ -7,7 +7,9 @@ import {
   TableBody,
   TableRow,
   TableCell,
+  TableFooter,
   Paper,
+  LinearProgress,
 } from "@mui/material";
 
 import { ListPeople, PeopleService } from "../../shared/services";
@@ -15,6 +17,7 @@ import { LayoutBasePage } from "../../shared/layouts";
 import { Toolbar } from "../../shared/components";
 import { useDebounce } from "../../shared/hooks";
 import { listData } from "../../shared/mocks";
+import { Environment } from "../../shared/environment";
 
 export const PeopleList: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -27,6 +30,8 @@ export const PeopleList: React.FC = () => {
     () => searchParams.get("search") || "",
     [searchParams],
   );
+
+  console.log(searchParams);
 
   useEffect(() => {
     setLoading(true);
@@ -89,6 +94,18 @@ export const PeopleList: React.FC = () => {
               );
             })}
           </TableBody>
+          {totalCount === 0 && !loading && (
+            <caption>{Environment.EMPTY_LISTING}</caption>
+          )}
+          <TableFooter>
+            {loading && (
+              <TableRow>
+                <TableCell colSpan={4}>
+                  <LinearProgress variant="indeterminate" />
+                </TableCell>
+              </TableRow>
+            )}
+          </TableFooter>
         </Table>
       </TableContainer>
     </LayoutBasePage>

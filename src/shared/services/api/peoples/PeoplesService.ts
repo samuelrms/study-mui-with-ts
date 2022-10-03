@@ -9,11 +9,9 @@ export interface DetailPeople {
 }
 
 export interface ListPeople {
-  id: number;
-  peopleID: number;
-  fullName: string;
-  email: string;
   name: string;
+  id: number;
+  email: string;
   action: string;
   age: number;
 }
@@ -25,9 +23,12 @@ type PeopleCount = {
 
 const { LIMITS_OF_LINES } = Environment;
 
-const getAll = async (page = 1, filter = ""): Promise<PeopleCount | Error> => {
+const getAll = async (
+  page = 1,
+  filter = "search",
+): Promise<PeopleCount | Error> => {
   try {
-    const urlRelative = `people?_page=${page}&_limit=${LIMITS_OF_LINES}&fullName_like=${filter}`;
+    const urlRelative = `people?_page=${page}&_limit=${LIMITS_OF_LINES}&name_like=${filter}`;
 
     const { data, headers } = await API.get(urlRelative);
 
