@@ -10,6 +10,7 @@ import {
   TableFooter,
   Paper,
   LinearProgress,
+  Pagination,
 } from "@mui/material";
 
 import { ListPeople, PeopleService } from "../../shared/services";
@@ -31,12 +32,19 @@ export const PeopleList: React.FC = () => {
     [searchParams],
   );
 
+  const page = useMemo(
+    () => Number(searchParams.get("page") || "1"),
+    [searchParams],
+  );
+
+  const { EMPTY_LISTING, LIMITS_OF_LINES } = Environment;
+
   console.log(searchParams);
 
   useEffect(() => {
     setLoading(true);
     debounce(() => {
-      PeopleService.getAll(1, search)
+      PeopleService.getAll(page, search)
         .then((result) => {
           if (result instanceof Error) {
             alert(result.message);
@@ -53,7 +61,7 @@ export const PeopleList: React.FC = () => {
           setLoading(false);
         });
     });
-  }, [search]);
+  }, [search, page]);
 
   return (
     <LayoutBasePage
@@ -64,7 +72,7 @@ export const PeopleList: React.FC = () => {
           showSearchInput
           searchText={search}
           toggleTextSearch={(text) =>
-            setSearchParams({ search: text }, { replace: true })
+            setSearchParams({ search: text, page: "1" }, { replace: true })
           }
         />
       }
@@ -90,18 +98,30 @@ export const PeopleList: React.FC = () => {
                   <TableCell>{data.name}</TableCell>
                   <TableCell>{data.age}</TableCell>
                   <TableCell>{data.email}</TableCell>
+                  <TableCell>{data.id}</TableCell>
                 </TableRow>
               );
             })}
           </TableBody>
-          {totalCount === 0 && !loading && (
-            <caption>{Environment.EMPTY_LISTING}</caption>
-          )}
+          {totalCount === 0 && !loading && <caption>{EMPTY_LISTING}</caption>}
           <TableFooter>
             {loading && (
               <TableRow>
-                <TableCell colSpan={4}>
+                <TableCell colSpan={listData.tableHead.length}>
                   <LinearProgress variant="indeterminate" />
+                </TableCell>
+              </TableRow>
+            )}
+            {totalCount > 0 && totalCount > LIMITS_OF_LINES && (
+              <TableRow>
+                <TableCell colSpan={4}>
+                  <Pagination
+                    page={page}
+                    count={Math.ceil(totalCount / LIMITS_OF_LINES)}
+                    onChange={(_, newPage) =>
+                      setSearchParams({ search, page: newPage.toString() })
+                    }
+                  />
                 </TableCell>
               </TableRow>
             )}
