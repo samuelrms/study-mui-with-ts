@@ -1,3 +1,3 @@
 export const listData = {
-  tableHead: ["Ações", "Nome", "Idade", "E-mail", "ID"],
+  tableHead: ["Nome", "Idade", "E-mail", "ID", "Ações"],
 };

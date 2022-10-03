@@ -1,15 +1,6 @@
 {
   "people": [
     {
-      "id": 0,
-      "name": "Samuel",
-      "fullName": "Samuel Ramos",
-      "age": 22,
-      "email": "teste@gmail.com",
-      "action": "Desenvolvendo",
-      "cityId": 1
-    },
-    {
       "id": 1,
       "name": "Ruan",
       "fullName": "",
@@ -122,15 +113,6 @@
       "name": "Kaio",
       "fullName": "",
       "age": 20,
-      "email": "teste@gmail.com",
-      "action": "Desenvolvendo",
-      "cityId": 1
-    },
-    {
-      "id": 14,
-      "name": "Nicolas",
-      "fullName": "",
-      "age": 25,
       "email": "teste@gmail.com",
       "action": "Desenvolvendo",
       "cityId": 1

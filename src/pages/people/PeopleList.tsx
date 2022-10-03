@@ -11,6 +11,8 @@ import {
   Paper,
   LinearProgress,
   Pagination,
+  IconButton,
+  Icon,
 } from "@mui/material";
 
 import { ListPeople, PeopleService } from "../../shared/services";
@@ -39,7 +41,15 @@ export const PeopleList: React.FC = () => {
 
   const { EMPTY_LISTING, LIMITS_OF_LINES } = Environment;
 
-  console.log(searchParams);
+  const handleDelete = (id: number) => {
+    if (confirm("Deseja apagar o registro?")) {
+      PeopleService.deleteByID(id).then((result) => {
+        if (result instanceof Error) {
+          alert(result.message);
+        }
+      });
+    }
+  };
 
   useEffect(() => {
     setLoading(true);
@@ -94,11 +104,22 @@ export const PeopleList: React.FC = () => {
             {rows.map((data) => {
               return (
                 <TableRow key={data.id}>
-                  <TableCell>{data.action}</TableCell>
                   <TableCell>{data.name}</TableCell>
                   <TableCell>{data.age}</TableCell>
                   <TableCell>{data.email}</TableCell>
                   <TableCell>{data.id}</TableCell>
+                  <TableCell>
+                    <IconButton
+                      size="small"
+                      onClick={() => handleDelete(data.id)}
+                      // time 8:42 #30
+                    >
+                      <Icon>delete</Icon>
+                    </IconButton>
+                    <IconButton size="small">
+                      <Icon>edit</Icon>
+                    </IconButton>
+                  </TableCell>
                 </TableRow>
               );
             })}
