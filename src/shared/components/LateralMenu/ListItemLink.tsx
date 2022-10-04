@@ -10,6 +10,7 @@ interface ListItemLinkProps {
   label: string;
   icon: string;
   to: string;
+  className: string;
   onClick: (() => void) | undefined;
 }
 
@@ -18,6 +19,7 @@ export const ListItemLink: React.FC<ListItemLinkProps> = ({
   icon,
   label,
   onClick,
+  className,
 }) => {
   const navigate = useNavigate();
 
@@ -35,8 +37,16 @@ export const ListItemLink: React.FC<ListItemLinkProps> = ({
 
   return (
     <ListItemButton
-      className={label}
-      sx={{ "&.Detalhes": { display: "none" } }}
+      className={className}
+      sx={{
+        "&.newPeople": {
+          ml: 2,
+          borderRadius: "0 0 0 8px",
+        },
+        " &.detailsPeople": {
+          display: "none",
+        },
+      }}
       selected={!!match}
       onClick={handleClick}
     >

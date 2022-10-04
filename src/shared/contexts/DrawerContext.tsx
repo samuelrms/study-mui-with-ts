@@ -11,6 +11,7 @@ interface DrawerOptions {
   icon: string;
   label: string;
   path: string;
+  className: string;
 }
 
 const DrawerContext = createContext({} as DrawerContextData);

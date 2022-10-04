@@ -55,6 +55,7 @@ export const LateralMenu: React.FC<Children> = ({ children }) => {
             <List component="nav">
               {drawerOptions.map((drawerOption) => (
                 <ListItemLink
+                  className={drawerOption.className}
                   key={drawerOption.path}
                   icon={drawerOption.icon}
                   label={drawerOption.label}

@@ -86,6 +86,7 @@ export const PeopleList: React.FC = () => {
           textButtonNew="Nova"
           showSearchInput
           searchText={search}
+          onClick={() => navigate("/pessoas/detalhe/nova")}
           toggleTextSearch={(text) =>
             setSearchParams({ search: text, page: "1" }, { replace: true })
           }
