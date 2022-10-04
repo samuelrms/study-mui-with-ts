@@ -1,5 +1,5 @@
 import { useMemo, useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import {
   TableContainer,
   Table,
@@ -28,6 +28,7 @@ export const PeopleList: React.FC = () => {
   const [rows, setRows] = useState<ListPeople[]>([]);
   const [totalCount, setTotalCount] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(false);
+  const navigate = useNavigate();
 
   const search = useMemo(
     () => searchParams.get("search") || "",
@@ -46,6 +47,10 @@ export const PeopleList: React.FC = () => {
       PeopleService.deleteByID(id).then((result) => {
         if (result instanceof Error) {
           alert(result.message);
+        } else {
+          setRows((oldRows) => [
+            ...oldRows.filter((oldRow) => oldRow.id !== id),
+          ]);
         }
       });
     }
@@ -112,11 +117,13 @@ export const PeopleList: React.FC = () => {
                     <IconButton
                       size="small"
                       onClick={() => handleDelete(data.id)}
-                      // time 8:42 #30
                     >
                       <Icon>delete</Icon>
                     </IconButton>
-                    <IconButton size="small">
+                    <IconButton
+                      onClick={() => navigate(`/pessoas/detalhes/${data.id}`)}
+                      size="small"
+                    >
                       <Icon>edit</Icon>
                     </IconButton>
                   </TableCell>

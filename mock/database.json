@@ -1,46 +1,10 @@
 {
   "people": [
     {
-      "id": 1,
-      "name": "Ruan",
-      "fullName": "",
-      "age": 12,
-      "email": "teste@gmail.com",
-      "action": "Desenvolvendo",
-      "cityId": 1
-    },
-    {
-      "id": 2,
-      "name": "Antonio",
-      "fullName": "",
-      "age": 62,
-      "email": "teste@gmail.com",
-      "action": "Desenvolvendo",
-      "cityId": 1
-    },
-    {
-      "id": 3,
-      "name": "Kaio",
-      "fullName": "",
-      "age": 20,
-      "email": "teste@gmail.com",
-      "action": "Desenvolvendo",
-      "cityId": 1
-    },
-    {
       "id": 4,
       "name": "Nicolas",
       "fullName": "",
       "age": 25,
-      "email": "teste@gmail.com",
-      "action": "Desenvolvendo",
-      "cityId": 1
-    },
-    {
-      "id": 5,
-      "name": "Samuel",
-      "fullName": "Samuel Ramos",
-      "age": 22,
       "email": "teste@gmail.com",
       "action": "Desenvolvendo",
       "cityId": 1

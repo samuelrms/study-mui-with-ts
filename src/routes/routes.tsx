@@ -13,13 +13,13 @@ export const routes = [
     icon: "groups",
     path: "/pessoas",
     subPath: [],
+
     element: <PeopleList />,
   },
-  // {
-  //   label: "Detalhes",
-  //   icon: "description",
-  //   path: "/cidades/detalhes/:id",
-  //   subPath: [],
-  //   element: <CityList />,
-  // },
+  {
+    path: "/pessoas/detalhes/:id",
+    label: "Detalhes",
+    icon: "description",
+    element: <Dashboard />,
+  },
 ];
