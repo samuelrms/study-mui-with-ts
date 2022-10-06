@@ -110,7 +110,7 @@ export const PeopleList: React.FC = () => {
             {rows.map((data) => {
               return (
                 <TableRow key={data.id}>
-                  <TableCell>{data.name}</TableCell>
+                  <TableCell>{data.fullName}</TableCell>
                   <TableCell>{data.age}</TableCell>
                   <TableCell>{data.email}</TableCell>
                   <TableCell>{data.id}</TableCell>

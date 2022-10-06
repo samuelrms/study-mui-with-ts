@@ -6,6 +6,7 @@ export interface DetailPeople {
   cityID: number;
   fullName: string;
   email: string;
+  name: string;
 }
 
 export interface ListPeople {
@@ -14,6 +15,7 @@ export interface ListPeople {
   email: string;
   action: string;
   age: number;
+  fullName: string;
 }
 
 type PeopleCount = {
