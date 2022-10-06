@@ -71,15 +71,6 @@
       "email": "teste@gmail.com",
       "action": "Desenvolvendo",
       "cityId": 1
-    },
-    {
-      "id": 13,
-      "name": "Kaio",
-      "fullName": "",
-      "age": 20,
-      "email": "teste@gmail.com",
-      "action": "Desenvolvendo",
-      "cityId": 1
     }
   ]
 }
