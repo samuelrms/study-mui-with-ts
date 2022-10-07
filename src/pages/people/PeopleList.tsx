@@ -43,17 +43,13 @@ export const PeopleList: React.FC = () => {
   const { EMPTY_LISTING, LIMITS_OF_LINES } = Environment;
 
   const handleDelete = (id: number) => {
-    if (confirm("Deseja apagar o registro?")) {
-      PeopleService.deleteByID(id).then((result) => {
-        if (result instanceof Error) {
-          alert(result.message);
-        } else {
-          setRows((oldRows) => [
-            ...oldRows.filter((oldRow) => oldRow.id !== id),
-          ]);
-        }
-      });
-    }
+    PeopleService.deleteByID(id).then((result) => {
+      if (result instanceof Error) {
+        alert(result.message);
+      } else {
+        setRows((oldRows) => [...oldRows.filter((oldRow) => oldRow.id !== id)]);
+      }
+    });
   };
 
   useEffect(() => {

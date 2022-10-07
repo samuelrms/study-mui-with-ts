@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { LinearProgress, Box, Paper, Grid, Typography } from "@mui/material";
 import { useParams } from "react-router-dom";
+import { Form } from "@unform/web";
 
-import { UnFormTextField, UnForm, useUnForm } from "../../shared/forms";
+import { UnFormTextField, useUnForm } from "../../shared/forms";
 import { ToolbarDetails } from "../../shared/components";
 import { LayoutBasePage } from "../../shared/layouts";
 import { useFunctionButtonsToolbar } from "./function";
@@ -53,7 +54,7 @@ export const PeopleDetails: React.FC = () => {
         />
       }
     >
-      <UnForm ref={formRef} onSubmit={handleSave}>
+      <Form ref={formRef} onSubmit={handleSave}>
         <Box
           margin={1}
           display="flex"
@@ -86,7 +87,7 @@ export const PeopleDetails: React.FC = () => {
             })}
           </Grid>
         </Box>
-      </UnForm>
+      </Form>
     </LayoutBasePage>
   );
 };
