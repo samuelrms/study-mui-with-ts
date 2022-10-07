@@ -1,16 +1,14 @@
-import React, { useEffect, useState, useRef } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import { LinearProgress, Box, Paper, Grid, Typography } from "@mui/material";
-import { FormHandles } from "@unform/core";
-import { Form } from "@unform/web";
+import { useNavigate, useParams } from "react-router-dom";
 
 import { ToolbarDetails } from "../../shared/components";
 import { LayoutBasePage } from "../../shared/layouts";
 import { PeopleService } from "../../shared/services";
-import { UnFormTextField } from "../../shared/forms";
+import { UnFormTextField, UnForm, useUnForm } from "../../shared/forms";
 import { listItensForm } from "./utils";
 
-interface FormData {
+export interface FormData {
   name: string;
   fullName: string;
   email: string;
@@ -19,19 +17,14 @@ interface FormData {
 }
 
 export const PeopleDetails: React.FC = () => {
+  const { formRef, isSaveAndBack, save, saveAndBack } = useUnForm();
   const { id = "nova" } = useParams<"id">();
+  const navigate = useNavigate();
+
   const [loading, setLoading] = useState<boolean>(false);
   const [name, setName] = useState<string>("");
 
-  const formRef = useRef<FormHandles>(null);
-
-  const navigate = useNavigate();
-
   const { deleteByID, getByID, create, updateByID } = PeopleService;
-
-  const onSave = () => {
-    formRef.current?.submitForm();
-  };
 
   const handleSave = (data: FormData) => {
     setLoading(true);
@@ -41,7 +34,11 @@ export const PeopleDetails: React.FC = () => {
           if (result instanceof Error) {
             alert(result.message);
           } else {
-            navigate(`/pessoas/detalhes/${result}`);
+            if (isSaveAndBack()) {
+              navigate("/pessoas");
+            } else {
+              navigate(`/pessoas/detalhes/${result}`);
+            }
           }
         })
         .finally(() => {
@@ -52,16 +49,16 @@ export const PeopleDetails: React.FC = () => {
         .then((result) => {
           if (result instanceof Error) {
             alert(result.message);
+          } else {
+            if (isSaveAndBack()) {
+              navigate("/pessoas");
+            }
           }
         })
         .finally(() => {
           setLoading(false);
         });
     }
-  };
-
-  const onSaveBack = () => {
-    formRef.current?.submitForm();
   };
 
   const onDelete = () => {
@@ -98,6 +95,14 @@ export const PeopleDetails: React.FC = () => {
           }
         })
         .finally(() => setLoading(false));
+    } else {
+      formRef.current?.setData({
+        name: "",
+        fullName: "",
+        email: "",
+        age: "",
+        cityID: "",
+      });
     }
   }, [id]);
 
@@ -112,19 +117,19 @@ export const PeopleDetails: React.FC = () => {
             delete: id === "nova",
             back: false,
             save: false,
-            saveAndBack: false,
+            saveAndBack: true,
           }}
           handleClick={{
             new: onNew,
             back: onBack,
             delete: onDelete,
-            save: onSave,
-            saveAndBack: onSaveBack,
+            save,
+            saveAndBack,
           }}
         />
       }
     >
-      <Form ref={formRef} onSubmit={handleSave}>
+      <UnForm ref={formRef} onSubmit={handleSave}>
         <Box
           margin={1}
           display="flex"
@@ -150,7 +155,6 @@ export const PeopleDetails: React.FC = () => {
                       label={label}
                       name={name}
                       disabled={loading}
-                      onChange={(e) => setName(e.target.value)}
                     />
                   </Grid>
                 </Grid>
@@ -158,7 +162,7 @@ export const PeopleDetails: React.FC = () => {
             })}
           </Grid>
         </Box>
-      </Form>
+      </UnForm>
     </LayoutBasePage>
   );
 };
