@@ -51,15 +51,13 @@ export const useFunctionButtonsToolbar = (
   };
 
   const onDelete = () => {
-    if (confirm("Deseja apagar o registro?")) {
-      deleteByID(Number(id)).then((result) => {
-        if (result instanceof Error) {
-          alert(result.message);
-        } else {
-          navigate("/pessoas");
-        }
-      });
-    }
+    deleteByID(Number(id)).then((result) => {
+      if (result instanceof Error) {
+        alert(result.message);
+      } else {
+        navigate("/pessoas");
+      }
+    });
   };
 
   const onBack = () => {
