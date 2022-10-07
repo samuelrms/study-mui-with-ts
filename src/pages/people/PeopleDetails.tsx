@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { LinearProgress } from "@mui/material";
+import { FormHandles } from "@unform/core";
 import { Form } from "@unform/web";
 
 import { ToolbarDetails } from "../../shared/components";
@@ -8,24 +9,63 @@ import { LayoutBasePage } from "../../shared/layouts";
 import { PeopleService } from "../../shared/services";
 import { UnFormTextField } from "../../shared/forms";
 
+interface FormData {
+  name: string;
+  fullName: string;
+  email: string;
+  age: number;
+  cityID: number;
+}
+
 export const PeopleDetails: React.FC = () => {
   const { id = "nova" } = useParams<"id">();
   const [loading, setLoading] = useState<boolean>(false);
   const [name, setName] = useState<string>("");
 
+  const formRef = useRef<FormHandles>(null);
+
   const navigate = useNavigate();
 
+  const { deleteByID, getByID, create, updateByID } = PeopleService;
+
   const onSave = () => {
-    console.log();
+    formRef.current?.submitForm();
+  };
+
+  const handleSave = (data: FormData) => {
+    setLoading(true);
+    if (id === "nova") {
+      create(data)
+        .then((result) => {
+          if (result instanceof Error) {
+            alert(result.message);
+          } else {
+            navigate(`/pessoas/detalhes/${result}`);
+          }
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    } else {
+      updateByID(Number(id), data)
+        .then((result) => {
+          if (result instanceof Error) {
+            alert(result.message);
+          }
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    }
   };
 
   const onSaveBack = () => {
-    console.log();
+    formRef.current?.submitForm();
   };
 
   const onDelete = () => {
     if (confirm("Deseja apagar o registro?")) {
-      PeopleService.deleteByID(Number(id)).then((result) => {
+      deleteByID(Number(id)).then((result) => {
         if (result instanceof Error) {
           alert(result.message);
         } else {
@@ -46,14 +86,14 @@ export const PeopleDetails: React.FC = () => {
   useEffect(() => {
     if (id !== "nova") {
       setLoading(true);
-      PeopleService.getByID(Number(id))
+      getByID(Number(id))
         .then((data) => {
           if (data instanceof Error) {
             alert(data.message);
             navigate("/pessoas");
           } else {
-            console.log(data);
             setName(data.fullName);
+            formRef.current?.setData(data);
           }
         })
         .finally(() => setLoading(false));
@@ -85,10 +125,12 @@ export const PeopleDetails: React.FC = () => {
     >
       {loading && <LinearProgress variant="indeterminate" />}
       PeopleDetails {id}
-      <Form onSubmit={console.log}>
-        <UnFormTextField name="name" />
-        <UnFormTextField name="fullName" />
-        <button type="submit">Log</button>
+      <Form ref={formRef} onSubmit={handleSave}>
+        <UnFormTextField placeholder="Nome" name="name" />
+        <UnFormTextField placeholder="Nome completo" name="fullName" />
+        <UnFormTextField placeholder="E-mail" name="email" />
+        <UnFormTextField placeholder="Idade" name="age" />
+        <UnFormTextField placeholder="Cidade ID" name="cityID" />
       </Form>
     </LayoutBasePage>
   );

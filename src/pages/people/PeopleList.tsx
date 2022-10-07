@@ -109,7 +109,12 @@ export const PeopleList: React.FC = () => {
             {rows.map((data) => {
               return (
                 <TableRow key={data.id}>
-                  <TableCell>{data.fullName}</TableCell>
+                  <TableCell
+                    onClick={() => navigate(`/pessoas/detalhes/${data.id}`)}
+                    sx={{ cursor: "pointer" }}
+                  >
+                    {data.fullName}
+                  </TableCell>
                   <TableCell>{data.age}</TableCell>
                   <TableCell>{data.email}</TableCell>
                   <TableCell>{data.id}</TableCell>

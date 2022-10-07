@@ -1,13 +1,12 @@
 {
   "people": [
     {
-      "id": 6,
       "name": "Ruan",
       "fullName": "Ruan Oliveira Borges",
-      "age": 12,
       "email": "teste@gmail.com",
-      "action": "Desenvolvendo",
-      "cityId": 1
+      "age": 12,
+      "cityID": "8",
+      "id": 6
     },
     {
       "id": 7,
@@ -19,13 +18,12 @@
       "cityId": 1
     },
     {
-      "id": 8,
       "name": "Kaio",
-      "fullName": "Kaio Cerutti",
-      "age": 20,
-      "email": "teste@gmail.com",
-      "action": "Desenvolvendo",
-      "cityId": 1
+      "fullName": " Kaio Bernadinho Cerutti",
+      "email": "kaio@teste.com",
+      "age": "20",
+      "cityID": "4",
+      "id": 8
     },
     {
       "id": 9,
@@ -44,6 +42,14 @@
       "email": "teste@gmail.com",
       "action": "Desenvolvendo",
       "cityId": 1
+    },
+    {
+      "name": "Pedro",
+      "fullName": "Pedro Pé de Pato",
+      "email": "pato@teste.com",
+      "age": "13",
+      "cityID": "8",
+      "id": 13
     }
   ]
 }
