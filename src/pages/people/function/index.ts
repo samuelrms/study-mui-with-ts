@@ -4,7 +4,7 @@ import { FormHandles } from "@unform/core";
 import { PeopleService } from "../../../shared/services";
 import { FormData } from "../PeopleDetails";
 
-export const functionButtonsToolbar = (
+export const useFunctionButtonsToolbar = (
   id: string,
   setLoading: React.Dispatch<React.SetStateAction<boolean>>,
   setName: React.Dispatch<React.SetStateAction<string>>,

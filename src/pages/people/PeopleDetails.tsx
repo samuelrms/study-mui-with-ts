@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import { UnFormTextField, UnForm, useUnForm } from "../../shared/forms";
 import { ToolbarDetails } from "../../shared/components";
 import { LayoutBasePage } from "../../shared/layouts";
-import { functionButtonsToolbar } from "./function";
+import { useFunctionButtonsToolbar } from "./function";
 import { listItensForm } from "./utils";
 
 export interface FormData {
@@ -24,7 +24,7 @@ export const PeopleDetails: React.FC = () => {
   const [name, setName] = useState<string>("");
 
   const { handleSave, onDelete, onBack, onNew, getPeople } =
-    functionButtonsToolbar(id, setLoading, setName, formRef, isSaveAndBack);
+    useFunctionButtonsToolbar(id, setLoading, setName, formRef, isSaveAndBack);
 
   useEffect(() => {
     getPeople();
