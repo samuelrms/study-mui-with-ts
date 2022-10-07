@@ -63,7 +63,6 @@ export const PeopleList: React.FC = () => {
         .then((result) => {
           if (result instanceof Error) {
             alert(result.message);
-            return;
           } else {
             console.log(result);
 

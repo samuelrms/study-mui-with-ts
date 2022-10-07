@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { LinearProgress } from "@mui/material";
+import { Form } from "@unform/web";
 
 import { ToolbarDetails } from "../../shared/components";
 import { LayoutBasePage } from "../../shared/layouts";
 import { PeopleService } from "../../shared/services";
+import { UnFormTextField } from "../../shared/forms";
 
 export const PeopleDetails: React.FC = () => {
   const { id = "nova" } = useParams<"id">();
@@ -21,7 +23,7 @@ export const PeopleDetails: React.FC = () => {
     console.log();
   };
 
-  const onDelete = (id: string) => {
+  const onDelete = () => {
     if (confirm("Deseja apagar o registro?")) {
       PeopleService.deleteByID(Number(id)).then((result) => {
         if (result instanceof Error) {
@@ -74,7 +76,7 @@ export const PeopleDetails: React.FC = () => {
           handleClick={{
             new: onNew,
             back: onBack,
-            delete: () => onDelete(id),
+            delete: onDelete,
             save: onSave,
             saveAndBack: onSaveBack,
           }}
@@ -83,6 +85,11 @@ export const PeopleDetails: React.FC = () => {
     >
       {loading && <LinearProgress variant="indeterminate" />}
       PeopleDetails {id}
+      <Form onSubmit={console.log}>
+        <UnFormTextField name="name" />
+        <UnFormTextField name="fullName" />
+        <button type="submit">Log</button>
+      </Form>
     </LayoutBasePage>
   );
 };
