@@ -30,8 +30,14 @@ export const UnFormTextField: React.FC<UnFormTextFieldProps> = ({
       error={!!error}
       helperText={error}
       defaultValue={defaultValue}
-      onChange={(e) => setValue(e.target.value)}
-      onKeyDown={() => (error ? clearError() : undefined)}
+      onChange={(e) => {
+        setValue(e.target.value);
+        props.onChange?.(e);
+      }}
+      onKeyDown={(e) => {
+        error ? clearError() : undefined;
+        props.onKeyDown?.(e);
+      }}
     />
   );
 };

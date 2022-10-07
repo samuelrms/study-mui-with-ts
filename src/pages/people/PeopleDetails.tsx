@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { LinearProgress } from "@mui/material";
+import { LinearProgress, Box, Paper, Grid, Typography } from "@mui/material";
 import { FormHandles } from "@unform/core";
 import { Form } from "@unform/web";
 
@@ -8,6 +8,7 @@ import { ToolbarDetails } from "../../shared/components";
 import { LayoutBasePage } from "../../shared/layouts";
 import { PeopleService } from "../../shared/services";
 import { UnFormTextField } from "../../shared/forms";
+import { listItensForm } from "./utils";
 
 interface FormData {
   name: string;
@@ -123,14 +124,40 @@ export const PeopleDetails: React.FC = () => {
         />
       }
     >
-      {loading && <LinearProgress variant="indeterminate" />}
-      PeopleDetails {id}
       <Form ref={formRef} onSubmit={handleSave}>
-        <UnFormTextField placeholder="Nome" name="name" />
-        <UnFormTextField placeholder="Nome completo" name="fullName" />
-        <UnFormTextField placeholder="E-mail" name="email" />
-        <UnFormTextField placeholder="Idade" name="age" />
-        <UnFormTextField placeholder="Cidade ID" name="cityID" />
+        <Box
+          margin={1}
+          display="flex"
+          flexDirection="column"
+          component={Paper}
+          variant="outlined"
+        >
+          <Grid container direction="column" padding={2} spacing={2}>
+            {loading && (
+              <Grid item>
+                <LinearProgress variant="indeterminate" />
+              </Grid>
+            )}
+            <Grid item>
+              <Typography variant="h6">Geral</Typography>
+            </Grid>
+            {listItensForm.map(({ label, name }, index) => {
+              return (
+                <Grid key={index} container item direction="row" spacing={2}>
+                  <Grid item xs={12} md={6} lg={4} xl={2}>
+                    <UnFormTextField
+                      fullWidth
+                      label={label}
+                      name={name}
+                      disabled={loading}
+                      onChange={(e) => setName(e.target.value)}
+                    />
+                  </Grid>
+                </Grid>
+              );
+            })}
+          </Grid>
+        </Box>
       </Form>
     </LayoutBasePage>
   );
