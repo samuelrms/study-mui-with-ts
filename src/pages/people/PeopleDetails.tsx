@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { LinearProgress, Box, Paper, Grid, Typography } from "@mui/material";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
+import { UnFormTextField, UnForm, useUnForm } from "../../shared/forms";
 import { ToolbarDetails } from "../../shared/components";
 import { LayoutBasePage } from "../../shared/layouts";
-import { PeopleService } from "../../shared/services";
-import { UnFormTextField, UnForm, useUnForm } from "../../shared/forms";
+import { functionButtonsToolbar } from "./function";
 import { listItensForm } from "./utils";
 
 export interface FormData {
@@ -19,91 +19,15 @@ export interface FormData {
 export const PeopleDetails: React.FC = () => {
   const { formRef, isSaveAndBack, save, saveAndBack } = useUnForm();
   const { id = "nova" } = useParams<"id">();
-  const navigate = useNavigate();
 
   const [loading, setLoading] = useState<boolean>(false);
   const [name, setName] = useState<string>("");
 
-  const { deleteByID, getByID, create, updateByID } = PeopleService;
-
-  const handleSave = (data: FormData) => {
-    setLoading(true);
-    if (id === "nova") {
-      create(data)
-        .then((result) => {
-          if (result instanceof Error) {
-            alert(result.message);
-          } else {
-            if (isSaveAndBack()) {
-              navigate("/pessoas");
-            } else {
-              navigate(`/pessoas/detalhes/${result}`);
-            }
-          }
-        })
-        .finally(() => {
-          setLoading(false);
-        });
-    } else {
-      updateByID(Number(id), data)
-        .then((result) => {
-          if (result instanceof Error) {
-            alert(result.message);
-          } else {
-            if (isSaveAndBack()) {
-              navigate("/pessoas");
-            }
-          }
-        })
-        .finally(() => {
-          setLoading(false);
-        });
-    }
-  };
-
-  const onDelete = () => {
-    if (confirm("Deseja apagar o registro?")) {
-      deleteByID(Number(id)).then((result) => {
-        if (result instanceof Error) {
-          alert(result.message);
-        } else {
-          navigate("/pessoas");
-        }
-      });
-    }
-  };
-
-  const onBack = () => {
-    navigate("/pessoas");
-  };
-
-  const onNew = () => {
-    navigate("/pessoas/detalhe/nova");
-  };
+  const { handleSave, onDelete, onBack, onNew, getPeople } =
+    functionButtonsToolbar(id, setLoading, setName, formRef, isSaveAndBack);
 
   useEffect(() => {
-    if (id !== "nova") {
-      setLoading(true);
-      getByID(Number(id))
-        .then((data) => {
-          if (data instanceof Error) {
-            alert(data.message);
-            navigate("/pessoas");
-          } else {
-            setName(data.fullName);
-            formRef.current?.setData(data);
-          }
-        })
-        .finally(() => setLoading(false));
-    } else {
-      formRef.current?.setData({
-        name: "",
-        fullName: "",
-        email: "",
-        age: "",
-        cityID: "",
-      });
-    }
+    getPeople();
   }, [id]);
 
   return (
