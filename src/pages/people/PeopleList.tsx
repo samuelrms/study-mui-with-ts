@@ -111,7 +111,9 @@ export const PeopleList: React.FC = () => {
                   >
                     {data.fullName}
                   </TableCell>
-                  <TableCell>{data.age}</TableCell>
+                  <TableCell>
+                    {data.age === undefined || NaN ? 0 : data.age}
+                  </TableCell>
                   <TableCell>{data.email}</TableCell>
                   <TableCell>{data.id}</TableCell>
                   <TableCell>

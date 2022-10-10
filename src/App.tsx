@@ -1,4 +1,5 @@
 import { BrowserRouter } from "react-router-dom";
+import "./shared/forms/TranslationsYup";
 import { AppRoutes } from "./routes/App.routes";
 import { LateralMenu } from "./shared/components";
 import { AppThemeProvider, DrawerProvider } from "./shared/contexts";

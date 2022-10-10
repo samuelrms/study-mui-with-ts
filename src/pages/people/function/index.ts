@@ -106,7 +106,7 @@ export const useFunctionButtonsToolbar = (
         name: "",
         fullName: "",
         email: "",
-        age: "",
+        age: 0,
         cityID: "",
       });
     }

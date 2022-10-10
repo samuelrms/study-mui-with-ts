@@ -6,5 +6,11 @@ export const formValidationSchema: yup.SchemaOf<FormData> = yup.object().shape({
   name: yup.string().required().min(3),
   email: yup.string().required().email(),
   cityID: yup.number().required(),
-  age: yup.number().required().positive().integer().max(100).min(16),
+  age: yup
+    .number()
+    .required()
+    .positive()
+    .integer()
+    .max(100)
+    .min(12, "É necessário ter ao menos 12 anos para realizar o cadastro."),
 });
