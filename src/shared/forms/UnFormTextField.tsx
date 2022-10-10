@@ -1,10 +1,7 @@
 import { useEffect, useState } from "react";
-import { TextField, TextFieldProps } from "@mui/material";
+import { TextField } from "@mui/material";
 import { useField } from "@unform/core";
-
-type UnFormTextFieldProps = TextFieldProps & {
-  name: string;
-};
+import { UnFormTextFieldProps } from "./InterfaceAndType";
 
 export const UnFormTextField: React.FC<UnFormTextFieldProps> = ({
   name,

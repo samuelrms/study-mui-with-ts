@@ -1,21 +1,12 @@
 {
   "people": [
     {
-      "name": "Ruan",
-      "fullName": "Ruan Luis Oliveira Borges",
-      "email": "teste@gmail.com",
-      "age": 12,
-      "cityID": "8",
-      "id": 6
-    },
-    {
-      "id": 7,
       "name": "Antonio",
-      "fullName": "Antonio Anaerto de Oliveira",
-      "age": 62,
+      "fullName": "Antonio Anaerto Oliveira",
       "email": "teste@gmail.com",
-      "action": "Desenvolvendo",
-      "cityId": 1
+      "age": 62,
+      "cityID": 8,
+      "id": 7
     },
     {
       "name": "Kaio",
