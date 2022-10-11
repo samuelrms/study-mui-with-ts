@@ -2,10 +2,10 @@ import { useNavigate } from "react-router-dom";
 import { FormHandles } from "@unform/core";
 import * as yup from "yup";
 
-import { CitiesService } from "../../../shared/services";
-import { FormDataCity } from "../CityDetails";
+import { CitiesService } from "../../../../shared/services";
+import { FormDataCity } from "../../CityDetails";
 import { formValidationSchema } from "../validation/formValidation";
-import { UnFormErrorsProps } from "../../../shared/forms";
+import { UnFormErrorsProps } from "../../../../shared/forms";
 
 export const useFunctionButtonsToolbar = (
   id: string,

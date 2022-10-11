@@ -1,5 +1,5 @@
 import * as yup from "yup";
-import { FormDataCity } from "../CityDetails";
+import { FormDataCity } from "../../CityDetails";
 
 export const formValidationSchema: yup.SchemaOf<FormDataCity> = yup
   .object()

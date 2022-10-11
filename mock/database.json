@@ -1,14 +1,6 @@
 {
   "people": [
     {
-      "name": "Antonio",
-      "fullName": "Antonio Anaerto Oliveira",
-      "email": "teste@gmail.com",
-      "age": 62,
-      "cityID": 8,
-      "id": 7
-    },
-    {
       "name": "Kaio",
       "fullName": " Kaio Bernadinho Cerutti",
       "email": "kaio@teste.com",
@@ -55,6 +47,14 @@
     {
       "name": "Uberlândia",
       "id": 1
+    },
+    {
+      "name": "Seu Paulo",
+      "id": 3
+    },
+    {
+      "name": "Tupaciguara",
+      "id": 4
     }
   ]
 }

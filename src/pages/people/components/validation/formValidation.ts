@@ -1,5 +1,5 @@
 import * as yup from "yup";
-import { FormData } from "../PeopleDetails";
+import { FormData } from "../../PeopleDetails";
 
 export const formValidationSchema: yup.SchemaOf<FormData> = yup.object().shape({
   fullName: yup.string().required().min(3),

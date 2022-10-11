@@ -6,8 +6,8 @@ import { Form } from "@unform/web";
 import { UnFormTextField, useUnForm } from "../../shared/forms";
 import { ToolbarDetails } from "../../shared/components";
 import { LayoutBasePage } from "../../shared/layouts";
-import { useFunctionButtonsToolbar } from "./function";
-import { listItensForm } from "./utils";
+import { useFunctionButtonsToolbar } from "./components/function";
+import { listItensForm } from "./components";
 
 export interface FormData {
   name: string;
