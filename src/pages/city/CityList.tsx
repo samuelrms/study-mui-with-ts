@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 import { useMemo, useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import {
@@ -15,17 +16,17 @@ import {
   Icon,
 } from "@mui/material";
 
-import { ListPeople, PeopleService } from "../../shared/services";
+import { ListCities, CitiesService } from "../../shared/services";
 import { LayoutBasePage } from "../../shared/layouts";
 import { Toolbar } from "../../shared/components";
 import { useDebounce } from "../../shared/hooks";
-import { listDataPeople } from "../../shared/mocks";
+import { listDataCity } from "../../shared/mocks";
 import { Environment } from "../../shared/environment";
 
-export const PeopleList: React.FC = () => {
+export const CityList: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const { debounce } = useDebounce();
-  const [rows, setRows] = useState<ListPeople[]>([]);
+  const [rows, setRows] = useState<ListCities[]>([]);
   const [totalCount, setTotalCount] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(false);
   const navigate = useNavigate();
@@ -43,7 +44,7 @@ export const PeopleList: React.FC = () => {
   const { EMPTY_LISTING, LIMITS_OF_LINES } = Environment;
 
   const handleDelete = (id: number) => {
-    PeopleService.deleteByID(id).then((result) => {
+    CitiesService.deleteByID(id).then((result) => {
       if (result instanceof Error) {
         alert(result.message);
       } else {
@@ -55,7 +56,7 @@ export const PeopleList: React.FC = () => {
   useEffect(() => {
     setLoading(true);
     debounce(() => {
-      PeopleService.getAll(page, search)
+      CitiesService.getAll(page, search)
         .then((result) => {
           if (result instanceof Error) {
             alert(result.message);
@@ -75,13 +76,13 @@ export const PeopleList: React.FC = () => {
 
   return (
     <LayoutBasePage
-      title="Listagem de Pessoas"
+      title="Listagem de Cidades"
       toolbar={
         <Toolbar
           textButtonNew="Nova"
           showSearchInput
           searchText={search}
-          onClick={() => navigate("/pessoas/detalhe/nova")}
+          onClick={() => navigate("/cidades/detalhe/nova")}
           toggleTextSearch={(text) =>
             setSearchParams({ search: text, page: "1" }, { replace: true })
           }
@@ -96,8 +97,17 @@ export const PeopleList: React.FC = () => {
         <Table>
           <TableHead>
             <TableRow>
-              {listDataPeople.tableHead.map((data, index) => {
-                return <TableCell key={index}>{data}</TableCell>;
+              {listDataCity.tableHead.map((data, index) => {
+                return (
+                  <TableCell
+                    key={index}
+                    width={
+                      data === "ID" ? 100 : data === "Ações" ? 100 : "auto"
+                    }
+                  >
+                    {data}
+                  </TableCell>
+                );
               })}
             </TableRow>
           </TableHead>
@@ -106,15 +116,11 @@ export const PeopleList: React.FC = () => {
               return (
                 <TableRow key={data.id}>
                   <TableCell
-                    onClick={() => navigate(`/pessoas/detalhes/${data.id}`)}
+                    onClick={() => navigate(`/cidades/detalhes/${data.id}`)}
                     sx={{ cursor: "pointer" }}
                   >
-                    {data.fullName}
+                    {data.name}
                   </TableCell>
-                  <TableCell>
-                    {data.age === undefined || NaN ? 0 : data.age}
-                  </TableCell>
-                  <TableCell>{data.email}</TableCell>
                   <TableCell>{data.id}</TableCell>
                   <TableCell>
                     <IconButton
@@ -124,7 +130,7 @@ export const PeopleList: React.FC = () => {
                       <Icon>delete</Icon>
                     </IconButton>
                     <IconButton
-                      onClick={() => navigate(`/pessoas/detalhes/${data.id}`)}
+                      onClick={() => navigate(`/cidades/detalhes/${data.id}`)}
                       size="small"
                     >
                       <Icon>edit</Icon>
@@ -138,14 +144,14 @@ export const PeopleList: React.FC = () => {
           <TableFooter>
             {loading && (
               <TableRow>
-                <TableCell colSpan={listDataPeople.tableHead.length}>
+                <TableCell colSpan={listDataCity.tableHead.length}>
                   <LinearProgress variant="indeterminate" />
                 </TableCell>
               </TableRow>
             )}
             {totalCount > 0 && totalCount > LIMITS_OF_LINES && (
               <TableRow>
-                <TableCell colSpan={4}>
+                <TableCell colSpan={3}>
                   <Pagination
                     page={page}
                     count={Math.ceil(totalCount / LIMITS_OF_LINES)}

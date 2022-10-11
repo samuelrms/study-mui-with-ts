@@ -2,8 +2,8 @@ import { useNavigate } from "react-router-dom";
 import { FormHandles } from "@unform/core";
 import * as yup from "yup";
 
-import { PeopleService } from "../../../shared/services";
-import { FormData } from "../PeopleDetails";
+import { CitiesService } from "../../../shared/services";
+import { FormDataCity } from "../CityDetails";
 import { formValidationSchema } from "../validation/formValidation";
 import { UnFormErrorsProps } from "../../../shared/forms";
 
@@ -16,9 +16,9 @@ export const useFunctionButtonsToolbar = (
 ) => {
   const navigate = useNavigate();
 
-  const { deleteByID, getByID, create, updateByID } = PeopleService;
+  const { deleteByID, getByID, create, updateByID } = CitiesService;
 
-  const handleSave = (data: FormData) => {
+  const handleSave = (data: FormDataCity) => {
     formValidationSchema
       .validate(data, {
         abortEarly: false,
@@ -32,9 +32,9 @@ export const useFunctionButtonsToolbar = (
                 alert(result.message);
               } else {
                 if (isSaveAndBack()) {
-                  navigate("/pessoas");
+                  navigate("/cidades");
                 } else {
-                  navigate(`/pessoas/detalhes/${result}`);
+                  navigate(`/cidades/detalhes/${result}`);
                 }
               }
             })
@@ -48,7 +48,7 @@ export const useFunctionButtonsToolbar = (
                 alert(result.message);
               } else {
                 if (isSaveAndBack()) {
-                  navigate("/pessoas");
+                  navigate("/cidades");
                 }
               }
             })
@@ -74,29 +74,29 @@ export const useFunctionButtonsToolbar = (
       if (result instanceof Error) {
         alert(result.message);
       } else {
-        navigate("/pessoas");
+        navigate("/cidades");
       }
     });
   };
 
   const onBack = () => {
-    navigate("/pessoas");
+    navigate("/cidades");
   };
 
   const onNew = () => {
-    navigate("/pessoas/detalhe/nova");
+    navigate("/cidades/detalhe/nova");
   };
 
-  const getPeople = () => {
+  const getCity = () => {
     if (id !== "nova") {
       setLoading(true);
       getByID(Number(id))
         .then((data) => {
           if (data instanceof Error) {
             alert(data.message);
-            navigate("/pessoas");
+            navigate("/cidades");
           } else {
-            setName(data.fullName);
+            setName(data.name);
             formRef.current?.setData(data);
           }
         })
@@ -104,13 +104,9 @@ export const useFunctionButtonsToolbar = (
     } else {
       formRef.current?.setData({
         name: "",
-        fullName: "",
-        email: "",
-        age: "",
-        cityID: "",
       });
     }
   };
 
-  return { handleSave, onDelete, onBack, onNew, getPeople };
+  return { handleSave, onDelete, onBack, onNew, getCity };
 };

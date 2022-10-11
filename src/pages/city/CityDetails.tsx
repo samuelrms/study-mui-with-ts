@@ -9,31 +9,27 @@ import { LayoutBasePage } from "../../shared/layouts";
 import { useFunctionButtonsToolbar } from "./function";
 import { listItensForm } from "./utils";
 
-export interface FormData {
+export interface FormDataCity {
   name: string;
-  fullName: string;
-  email: string;
-  age: number;
-  cityID: number;
 }
 
-export const PeopleDetails: React.FC = () => {
+export const CityDetails: React.FC = () => {
   const { formRef, isSaveAndBack, save, saveAndBack } = useUnForm();
   const { id = "nova" } = useParams<"id">();
 
   const [loading, setLoading] = useState<boolean>(false);
   const [name, setName] = useState<string>("");
 
-  const { handleSave, onDelete, onBack, onNew, getPeople } =
+  const { handleSave, onDelete, onBack, onNew, getCity } =
     useFunctionButtonsToolbar(id, setLoading, setName, formRef, isSaveAndBack);
 
   useEffect(() => {
-    getPeople();
+    getCity();
   }, [id]);
 
   return (
     <LayoutBasePage
-      title={id !== "nova" ? name : "Nova pessoa"}
+      title={id !== "nova" ? name : "Nova cidades"}
       toolbar={
         <ToolbarDetails
           textButtonNew="Nova"
@@ -69,7 +65,7 @@ export const PeopleDetails: React.FC = () => {
               </Grid>
             )}
             <Grid item>
-              <Typography variant="h6">Nova pessoa</Typography>
+              <Typography variant="h6">Nova cidade</Typography>
             </Grid>
             {listItensForm.map(({ label, name }, index) => {
               return (

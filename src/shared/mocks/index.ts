@@ -1,1 +1,2 @@
-export * from "./peopleList";
+export * from "./listDataPeople";
+export * from "./listDataCity";

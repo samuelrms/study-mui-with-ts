@@ -1,4 +1,10 @@
-import { PeopleList, Dashboard, PeopleDetails } from "../pages";
+import {
+  PeopleList,
+  Dashboard,
+  PeopleDetails,
+  CityDetails,
+  CityList,
+} from "../pages";
 
 export const routes = [
   {
@@ -30,5 +36,27 @@ export const routes = [
     icon: "emoji_people",
     className: "newPeople",
     element: <PeopleDetails />,
+  },
+  {
+    label: "Cidades",
+    icon: "business",
+    className: "people",
+    path: "/cidades",
+    subPath: [],
+    element: <CityList />,
+  },
+  {
+    path: "/cidades/detalhes/:id",
+    label: "Detalhes",
+    className: "detailsPeople",
+    icon: "description",
+    element: <CityDetails />,
+  },
+  {
+    path: "/cidades/detalhe/nova",
+    label: "Nova Cidade",
+    icon: "apartment",
+    className: "newPeople",
+    element: <CityDetails />,
   },
 ];

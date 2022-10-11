@@ -43,12 +43,18 @@
       "id": 13
     },
     {
+      "age": 99,
+      "cityID": 5,
+      "email": "samuelaoliveiraramos@gmail.com",
       "name": "SAMUEL ",
       "fullName": "SAMUEL ANTONIO OLIVEIRA RAMOS",
-      "email": "samuelaoliveiraramos@gmail.com",
-      "age": "4894",
-      "cityID": "Uberlândia",
       "id": 14
+    }
+  ],
+  "city": [
+    {
+      "name": "Uberlândia",
+      "id": 1
     }
   ]
 }
