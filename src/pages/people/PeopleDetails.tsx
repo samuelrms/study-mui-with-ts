@@ -7,7 +7,7 @@ import { UnFormTextField, useUnForm } from "../../shared/forms";
 import { ToolbarDetails } from "../../shared/components";
 import { LayoutBasePage } from "../../shared/layouts";
 import { useFunctionButtonsToolbar } from "./components/function";
-import { listItensForm } from "./components";
+import { AutoCompleteCity, listItensForm } from "./components";
 
 export interface FormData {
   name: string;
@@ -85,6 +85,11 @@ export const PeopleDetails: React.FC = () => {
                 </Grid>
               );
             })}
+            <Grid container item direction="row" spacing={2}>
+              <Grid item xs={12} md={6} lg={4} xl={2}>
+                <AutoCompleteCity />
+              </Grid>
+            </Grid>
           </Grid>
         </Box>
       </Form>

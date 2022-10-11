@@ -15,8 +15,4 @@ export const listItensForm = [
     label: "Idade",
     name: "age",
   },
-  {
-    label: "Cidade",
-    name: "cityID",
-  },
 ];
