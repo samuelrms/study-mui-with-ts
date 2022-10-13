@@ -1,19 +1,19 @@
 {
   "people": [
     {
+      "age": 62,
+      "cityID": 0,
+      "email": "teste@gmail.com",
       "name": "Antonio",
       "fullName": "Antonio Anaerto Oliveira",
-      "email": "teste@gmail.com",
-      "age": 62,
-      "cityID": 8,
       "id": 7
     },
     {
-      "name": "Kaio",
-      "fullName": " Kaio Bernadinho Cerutti",
+      "age": 20,
+      "cityID": 4,
       "email": "kaio@teste.com",
-      "age": "20",
-      "cityID": "4",
+      "name": "Kaio",
+      "fullName": " Kaio Cerutti",
       "id": 8
     },
     {
@@ -55,6 +55,42 @@
     {
       "name": "Uberlândia",
       "id": 1
+    },
+    {
+      "name": "Uberaba",
+      "id": 2
+    },
+    {
+      "name": "Araguari",
+      "id": 3
+    },
+    {
+      "name": "Araxá",
+      "id": 4
+    },
+    {
+      "name": "Perdizes",
+      "id": 5
+    },
+    {
+      "name": "Prata",
+      "id": 6
+    },
+    {
+      "name": "Nova Ponte",
+      "id": 7
+    },
+    {
+      "name": "Santa Juliana",
+      "id": 8
+    },
+    {
+      "name": "Luz",
+      "id": 9
+    },
+    {
+      "name": "Belo Horizonte",
+      "id": 10
     }
   ]
 }
