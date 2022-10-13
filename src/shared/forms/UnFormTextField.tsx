@@ -32,6 +32,7 @@ export const UnFormTextField: React.FC<UnFormTextFieldProps> = ({
         props.onChange?.(e);
       }}
       onKeyDown={(e) => {
+        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
         error ? clearError() : undefined;
         props.onKeyDown?.(e);
       }}

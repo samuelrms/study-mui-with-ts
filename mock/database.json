@@ -1,16 +1,8 @@
 {
   "people": [
     {
-      "age": 62,
+      "age": 23,
       "cityID": 0,
-      "email": "teste@gmail.com",
-      "name": "Antonio",
-      "fullName": "Antonio Anaerto Oliveira",
-      "id": 7
-    },
-    {
-      "age": 20,
-      "cityID": 4,
       "email": "kaio@teste.com",
       "name": "Kaio",
       "fullName": " Kaio Cerutti",
