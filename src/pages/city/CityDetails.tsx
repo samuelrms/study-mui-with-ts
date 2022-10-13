@@ -25,6 +25,7 @@ export const CityDetails: React.FC = () => {
 
   useEffect(() => {
     getCity();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   return (

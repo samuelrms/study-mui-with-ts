@@ -30,6 +30,7 @@ export const PeopleDetails: React.FC = () => {
 
   useEffect(() => {
     getPeople();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   return (

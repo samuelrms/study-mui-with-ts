@@ -1,11 +1,11 @@
 {
   "people": [
     {
-      "age": 23,
-      "cityID": 0,
-      "email": "kaio@teste.com",
       "name": "Kaio",
       "fullName": " Kaio Cerutti",
+      "email": "kaio@teste.com",
+      "age": 23,
+      "cityID": 1,
       "id": 8
     },
     {

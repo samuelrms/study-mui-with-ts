@@ -19,6 +19,8 @@ export const useFunctionButtonsToolbar = (
   const { deleteByID, getByID, create, updateByID } = PeopleService;
 
   const handleSave = (data: FormData) => {
+    console.log(data);
+
     formValidationSchema
       .validate(data, {
         abortEarly: false,
@@ -106,8 +108,8 @@ export const useFunctionButtonsToolbar = (
         name: "",
         fullName: "",
         email: "",
-        age: "",
-        cityID: "",
+        age: undefined,
+        cityID: undefined,
       });
     }
   };

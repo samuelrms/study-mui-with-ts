@@ -1,5 +1,7 @@
 import { Autocomplete, CircularProgress, TextField } from "@mui/material";
 import React, { useEffect, useMemo, useState } from "react";
+import { useField } from "@unform/core";
+
 import { useDebounce } from "../../../shared/hooks";
 import { CitiesService } from "../../../shared/services";
 
@@ -15,7 +17,11 @@ interface AutoCompleteCityProps {
 export const AutoCompleteCity: React.FC<AutoCompleteCityProps> = ({
   externalLoading = false,
 }) => {
-  const [selectedID, setSelectedID] = useState<number | undefined>(undefined);
+  const { fieldName, registerField, defaultValue, error, clearError } =
+    useField("cityID");
+  const [selectedID, setSelectedID] = useState<number | undefined>(
+    defaultValue,
+  );
   const [options, setOptions] = useState<AutoCompleteCityOptions[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [search, setSearch] = useState<string>("");
@@ -40,12 +46,22 @@ export const AutoCompleteCity: React.FC<AutoCompleteCityProps> = ({
           setLoading(false);
         });
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search]);
 
+  useEffect(() => {
+    registerField({
+      name: fieldName,
+      getValue: () => selectedID,
+      setValue: (_, value) => setSelectedID(value),
+    });
+  }, [registerField, fieldName, selectedID]);
+
   const autoCompleteOption = useMemo(() => {
-    if (!selectedID) return undefined;
+    if (!selectedID) return null;
 
     const selectedOptions = options.find((option) => option.id === selectedID);
+    if (!selectedID) return null;
 
     return selectedOptions;
   }, [selectedID, options]);
@@ -69,9 +85,17 @@ export const AutoCompleteCity: React.FC<AutoCompleteCityProps> = ({
       onChange={(_, newValue) => {
         setSelectedID(newValue?.id);
         setSearch("");
+        clearError();
       }}
       onInputChange={(_, newValue) => setSearch(newValue)}
-      renderInput={(params) => <TextField {...params} label={"Cidade"} />}
+      renderInput={(params) => (
+        <TextField
+          error={!!error}
+          helperText={error}
+          {...params}
+          label={"Cidade"}
+        />
+      )}
     />
   );
 };
