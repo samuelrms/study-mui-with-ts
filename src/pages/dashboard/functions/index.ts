@@ -29,8 +29,6 @@ export const useFunctionGetAllPeoplesAndCities = (
         if (result instanceof Error) {
           alert(result.message);
         } else {
-          console.log(result);
-
           setTotalCountPeople(result.totalCount);
           setLoadingPeople(false);
         }

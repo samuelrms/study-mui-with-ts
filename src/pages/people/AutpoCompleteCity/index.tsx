@@ -35,7 +35,6 @@ export const AutoCompleteCity: React.FC<AutoCompleteCityProps> = ({
           if (result instanceof Error) {
             alert(result.message);
           } else {
-            console.log(result.data);
             setOptions(
               result.data.map((city) => ({ id: city.id, label: city.name })),
             );

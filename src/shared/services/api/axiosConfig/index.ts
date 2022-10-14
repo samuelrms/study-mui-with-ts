@@ -6,6 +6,9 @@ const { URL_BASE } = Environment;
 
 const API = axios.create({
   baseURL: URL_BASE,
+  headers: {
+    Authorization: `Bearer ${localStorage.getItem("@Access_Token")}`,
+  },
 });
 
 API.interceptors.response.use(
