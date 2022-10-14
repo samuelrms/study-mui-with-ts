@@ -45,7 +45,6 @@ export const AutoCompleteCity: React.FC<AutoCompleteCityProps> = ({
           setLoading(false);
         });
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search]);
 
   useEffect(() => {
@@ -64,8 +63,6 @@ export const AutoCompleteCity: React.FC<AutoCompleteCityProps> = ({
 
     return selectedOptions;
   }, [selectedID, options]);
-
-  // aula #41 52:00
 
   return (
     <Autocomplete

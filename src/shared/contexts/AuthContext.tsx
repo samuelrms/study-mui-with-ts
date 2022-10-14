@@ -24,12 +24,10 @@ export const AuthProvider: React.FC<Children> = ({ children }) => {
     } else {
       setAccessToken(result.accessToken);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleLogout = useCallback(() => {
     setAccessToken(null);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const authenticated = useMemo(() => !!accessToken, [accessToken]);

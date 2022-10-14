@@ -35,7 +35,6 @@ export const Dashboard = () => {
   useEffect(() => {
     getCity();
     getPeople();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
