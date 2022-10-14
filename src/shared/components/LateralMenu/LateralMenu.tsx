@@ -14,7 +14,11 @@ import {
 
 import { Children } from "../../Interfaces";
 import avatar from "../../assets/avatar.jpeg";
-import { useAppThemeContext, useDrawerContext } from "../../contexts";
+import {
+  useAppThemeContext,
+  useAuthContext,
+  useDrawerContext,
+} from "../../contexts";
 import { ListItemLink } from "./ListItemLink";
 
 export const LateralMenu: React.FC<Children> = ({ children }) => {
@@ -23,6 +27,7 @@ export const LateralMenu: React.FC<Children> = ({ children }) => {
 
   const { isDrawerOpen, toggleDrawerOpen, drawerOptions } = useDrawerContext();
   const { toggleTheme, themeName } = useAppThemeContext();
+  const { logout } = useAuthContext();
 
   return (
     <>
@@ -74,6 +79,14 @@ export const LateralMenu: React.FC<Children> = ({ children }) => {
                 <ListItemText
                   primary={themeName === "light" ? "Tema escuro" : "Tema claro"}
                 />
+              </ListItemButton>
+            </List>
+            <List component="nav">
+              <ListItemButton onClick={logout}>
+                <ListItemIcon>
+                  <Icon color="primary">exit_to_app</Icon>
+                </ListItemIcon>
+                <ListItemText primary={"Sair"} />
               </ListItemButton>
             </List>
           </Box>

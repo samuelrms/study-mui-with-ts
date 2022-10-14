@@ -12,9 +12,9 @@ interface AuthContextData {
 const AuthContext = createContext({} as AuthContextData);
 
 export const AuthProvider: React.FC<Children> = ({ children }) => {
-  const [accessToken, setAccessToken] = usePersistedState<string | undefined>(
+  const [accessToken, setAccessToken] = usePersistedState<string | null>(
     "@Access_Token",
-    undefined,
+    null,
   );
 
   const handleLogin = useCallback(async (email: string, password: string) => {
@@ -28,7 +28,7 @@ export const AuthProvider: React.FC<Children> = ({ children }) => {
   }, []);
 
   const handleLogout = useCallback(() => {
-    setAccessToken(undefined);
+    setAccessToken(null);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
