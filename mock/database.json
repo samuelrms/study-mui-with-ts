@@ -2,7 +2,7 @@
   "people": [
     {
       "name": "Kaio",
-      "fullName": " Kaio Cerutti",
+      "fullName": " Kaio Ceruttiiii",
       "email": "kaio@teste.com",
       "age": 23,
       "cityID": 1,
@@ -41,6 +41,14 @@
       "name": "SAMUEL ",
       "fullName": "SAMUEL ANTONIO OLIVEIRA RAMOS",
       "id": 14
+    },
+    {
+      "age": 55,
+      "cityID": 3,
+      "email": "josefa@gmail.com",
+      "name": "Josefa",
+      "fullName": "Josefa Menezes Magalhães",
+      "id": 15
     }
   ],
   "city": [
@@ -53,7 +61,7 @@
       "id": 2
     },
     {
-      "name": "Araguari",
+      "name": "Araguariii",
       "id": 3
     },
     {
@@ -83,6 +91,10 @@
     {
       "name": "Belo Horizonte",
       "id": 10
+    },
+    {
+      "name": "Tiradentes",
+      "id": 11
     }
   ]
 }
