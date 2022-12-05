@@ -45,6 +45,9 @@ export const Login: React.FC<Children> = ({ children }) => {
             setPasswordError(error.message);
           }
         });
+      })
+      .finally(() => {
+        setLoading(false);
       });
   };
 

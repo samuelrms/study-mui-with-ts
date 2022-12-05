@@ -8,18 +8,18 @@ import {
 
 export const routes = [
   {
+    path: "/home",
     label: "Página inicial",
     icon: "home",
     className: "homePage",
-    path: "/home",
     subPath: [],
     element: <Dashboard />,
   },
   {
+    path: "/pessoas",
     label: "Pessoas",
     icon: "groups",
     className: "people",
-    path: "/pessoas",
     subPath: [],
     element: <PeopleList />,
   },
@@ -38,10 +38,10 @@ export const routes = [
     element: <PeopleDetails />,
   },
   {
+    path: "/cidades",
     label: "Cidades",
     icon: "business",
     className: "people",
-    path: "/cidades",
     subPath: [],
     element: <CityList />,
   },

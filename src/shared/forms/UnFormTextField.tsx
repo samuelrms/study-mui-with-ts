@@ -32,7 +32,7 @@ export const UnFormTextField: React.FC<UnFormTextFieldProps> = ({
         props.onChange?.(e);
       }}
       onKeyDown={(e) => {
-        error ? clearError() : undefined;
+        if (!!error) return clearError();
         props.onKeyDown?.(e);
       }}
     />
