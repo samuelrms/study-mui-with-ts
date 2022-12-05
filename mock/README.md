@@ -6,9 +6,3 @@
    ```
    yarn json_server
    ```
-
-   ou
-
-   ```
-   npm json_server
-   ```
