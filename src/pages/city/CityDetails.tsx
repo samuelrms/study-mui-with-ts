@@ -25,7 +25,7 @@ export const CityDetails: React.FC = () => {
 
   useEffect(() => {
     getCity();
-  }, [id]);
+  }, [id, getCity]);
 
   return (
     <LayoutBasePage

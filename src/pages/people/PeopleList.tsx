@@ -69,7 +69,7 @@ export const PeopleList: React.FC = () => {
           setLoading(false);
         });
     });
-  }, [search, page]);
+  }, [search, page, debounce]);
 
   return (
     <LayoutBasePage

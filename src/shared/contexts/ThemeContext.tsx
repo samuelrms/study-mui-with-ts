@@ -25,7 +25,7 @@ export const AppThemeProvider: React.FC<Children> = ({ children }) => {
     setThemeName((oldThemeName) =>
       oldThemeName === "light" ? "dark" : "light",
     );
-  }, []);
+  }, [setThemeName]);
 
   const theme = useMemo(() => {
     if (themeName === "light") {

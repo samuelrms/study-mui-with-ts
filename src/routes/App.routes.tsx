@@ -9,7 +9,7 @@ export const AppRoutes = () => {
 
   useEffect(() => {
     setDrawerOptions(routes);
-  }, []);
+  }, [setDrawerOptions]);
 
   return (
     <Routes>

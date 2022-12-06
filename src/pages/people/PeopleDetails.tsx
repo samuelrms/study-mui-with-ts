@@ -30,7 +30,7 @@ export const PeopleDetails: React.FC = () => {
 
   useEffect(() => {
     getPeople();
-  }, [id]);
+  }, [id, getPeople]);
 
   return (
     <LayoutBasePage

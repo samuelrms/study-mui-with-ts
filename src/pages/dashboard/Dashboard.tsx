@@ -35,7 +35,7 @@ export const Dashboard = () => {
   useEffect(() => {
     getCity();
     getPeople();
-  }, []);
+  }, [getCity, getPeople]);
 
   return (
     <LayoutBasePage

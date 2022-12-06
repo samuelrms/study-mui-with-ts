@@ -17,18 +17,21 @@ export const AuthProvider: React.FC<Children> = ({ children }) => {
     null,
   );
 
-  const handleLogin = useCallback(async (email: string, password: string) => {
-    const result = await AuthService.auth(email, password);
-    if (result instanceof Error) {
-      return result.message;
-    } else {
-      setAccessToken(result.accessToken);
-    }
-  }, []);
+  const handleLogin = useCallback(
+    async (email: string, password: string) => {
+      const result = await AuthService.auth(email, password);
+      if (result instanceof Error) {
+        return result.message;
+      } else {
+        setAccessToken(result.accessToken);
+      }
+    },
+    [setAccessToken],
+  );
 
   const handleLogout = useCallback(() => {
     setAccessToken(null);
-  }, []);
+  }, [setAccessToken]);
 
   const authenticated = useMemo(() => !!accessToken, [accessToken]);
 
