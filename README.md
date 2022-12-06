@@ -25,7 +25,7 @@ Desenvolvendo este projeto foquei nos seguintes pontos que julgo cruciais para t
 
 ## Arquitetura
 
-- O projeto está divido em 2 partes, utilizando o code-splitting:
+- O projeto está divido em 2 partes:
   - Parte de simulação de autenticação, com as sessões internas de listagem de pessoas e cidades.
   - Parte não autenticada, com a sessão de login.
 
